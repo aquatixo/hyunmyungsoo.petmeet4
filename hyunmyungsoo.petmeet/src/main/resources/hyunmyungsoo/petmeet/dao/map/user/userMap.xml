@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='hyunmyungsoo.petmeet.dao.map.user.UserMap'>
+	<select id='selectUsers' resultType='user'>
+		select user_id userId, user_name userName,
+			user_nickname userNickname,
+			user_phone userPhone, user_pw userPw, user_birth userBirth,
+			user_loc_si userLocSi, user_loc_gu userLocGu, user_loc_dong userLocDong	
+		from users
+	</select>
+
+	<select id='selectUser' resultType='user'>
+		select user_id userId, user_name userName,
+			user_nickname userNickname,
+			user_phone userPhone, user_pw userPw, user_birth userBirth,
+			user_loc_si userLocSi, user_loc_gu userLocGu, user_loc_dong userLocDong	
+		from users
+		where user_id = #{userId}
+	</select>
+	
+	<select id='selectFindId' resultType='user'>
+		select user_id userId
+		from users
+		where user_name = #{userName} and user_phone = #{userPhone}
+	</select>
+	
+	<insert id='insertUser'>
+      insert into users
+      values (#{userId}, #{userName}, #{userNickname},
+               #{userPw}, #{userPhone}, #{userBirth},
+              #{userLocSi}, #{userLocGu}, #{userLocDong})
+    </insert>
+	
+	<update id='updateUserPw'>
+		update users
+		set user_pw = #{userPw}
+		where user_id = #{userId}
+	</update>
+	
+	<delete id='deleteUser'>
+		delete users
+		where user_id = #{userId}
+	</delete>
+	
+	<insert id='insertDelUser'>
+		insert into deletedusers
+		values (#{userId}, current_date )
+	</insert>
+	
+	<update id='updateUserInfo'>
+		update users
+		set user_name = #{userName}, user_nickname = #{userNickname},
+		user_loc_si = #{userLocSi}, user_loc_gu  = #{userLocGu},
+		user_loc_dong = #{userLocDong}, user_birth = #{userBirth},
+		user_phone = #{userPhone}
+		where user_id = #{userId}
+	</update>
+	
+	<select id='selectDelUsers' resultType='user'>
+		select user_id userId	
+		from deletedusers
+	</select>
+</mapper>

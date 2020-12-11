@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- selectBoards selectBoard insertBoard updateBoard deleteBoard -->
+<mapper namespace="hyunmyungsoo.petmeet.dao.map.board.BoardMap">
+	<select id="selectBoards" resultType="board.info">
+		select board_num boardNum, board_title boardTitle, user_id userId, board_reg_date regDate
+		from boards
+		order by board_num desc
+	</select>
+	
+	<select id='selectBoard' resultType='board.info'> 
+		select board_num boardNum, board_title boardTitle, board_content boardContent, user_id userId, board_reg_date regDate
+		from boards
+		where board_num = #{boardNum}
+	</select> 
+	
+   <insert id="insertBoard">
+      insert into boards
+      		(board_num,  board_title, board_content, 
+			board_reg_date, board_file_name, user_id) 
+      values
+      		(BOARDS_BOARDNUM_SEQ.NEXTVAL, #{boardTitle},#{boardContent}, 
+			SYSDATE, #{boardFile}, #{userId})
+   </insert>
+   
+	<update id='updateBoard'> 
+   		update boards 
+		set board_num = #{boardNum}, board_title=#{boardTitle}, board_content=#{boardContent}, board_file_name = #{boardFile}
+		where board_num = #{boardNum}
+    </update> 
+   
+    <delete id="deleteBoard">
+		delete from boards
+		where board_num = #{boardNum}
+	</delete> 
+</mapper>

@@ -1,0 +1,132 @@
+   @charset 'UTF-8';
+/* header */
+.logoImg {
+   width: 135px;
+   height: 69px;
+   background: #94B8FF;
+   text-align: center;
+   vertical-align: middle;
+}
+
+.logOutBtn {
+   background: #94B8FF;
+   border-radius: 10px;
+   border: 2px solid #1564ff;
+   font-size: 18px;
+}
+
+/* nav */
+.line { /*수평선*/
+   width: 100%;
+   border: 1px solid #588FFB;
+   margin-top: 0px;
+}
+
+.gnbBar { /*라인 바*/
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* main */
+.adminMainBtnSize { /*main 박스 div*/
+   width: 100%;
+   height: 200px;
+   color: black;
+}
+
+/* border*/
+.feedImg { /*사료 이미지 ex)*/
+   background: white;
+   width: 100px;
+   height: 80px;
+   margin-top: 10px;
+   margin-left: 30px;
+   margin-right: 20px;
+   border: 1px solid;
+   float: left;
+   width: 33%;
+   padding: 10px
+}
+
+.boardContent { /*게시판 내용*/
+   float: left;
+}
+
+/*review*/
+.reviewList {
+   padding-top: 20px;
+   vertical-align: middle;
+}
+
+.reviewImg {
+   background: gray;
+   height: 100px;
+   vertical-align: middle;
+   margin-left: 55px;
+   margin-top: 10px;
+   text-align: center;
+}
+
+.reviewText1 {
+   text-align: center;
+   vertical-align: middle;
+}
+
+.reviewText2 {
+   text-align: left;
+   vertical-align: center;
+}
+
+/*sitter*/
+.sitterbox { /*이미지*/
+   width: 100%;
+}
+
+#sitterContent { /*시팅내용들*/
+   height: 100px;
+}
+/*user*/
+#errorMsg {
+   color: red;
+}
+
+/*admin 공통 css*/
+.main { /*margin*/
+   margin-top: 20px;
+   text-align: ceter;
+   color: black;
+}
+
+.backColor { /*backcolor*/
+   background: #94B8FF;
+}
+
+.text { /*text - align*/
+   text-align: center;
+}
+
+.board {
+   margin-bottom: 5px;
+   border: 1px solid #94B8FF;
+}
+
+.hr {
+   background: #94B8FF;
+}
+.reviewImg1 {
+   height: 100px;
+   border: 1px solid gray;
+   text-align: center;
+   vertical-align: middle;
+   padding: 35px 0px;
+}
+
+.reviewImg2 {
+   height: 100px;
+   border: 1px solid gray;
+   text-align: center;
+   vertical-align: middle;
+   padding: 25px 0px;
+}

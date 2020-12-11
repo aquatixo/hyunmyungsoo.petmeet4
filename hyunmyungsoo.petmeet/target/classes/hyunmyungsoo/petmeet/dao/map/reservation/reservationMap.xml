@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='hyunmyungsoo.petmeet.dao.map.reservation.ReservationMap'>
+	<select id='selectReviewForViews' resultType='reviewForView'>
+		select r.review_file_name reviewFileName, u.user_nickname userNickname,
+		r.review_reg_date reviewRegDate, r.review_rating reviewRating,
+		r.review_content reviewContent
+		from reviews r, users u
+		where r.user_id = u.user_id
+		and r.sitter_num = #{sitterNum}
+	</select>
+	
+	<select id='selectReservations' resultType='reservation'>
+		select reservation_num reservNum, user_id userId, 
+		reservation_start reservStart, reservation_finish reservFinish,
+		reservation_price reservPrice, reservation_accept reservAccept,
+		reservation_pet_type reservPetType, reservation_pet_size reserPetSize,
+		reservation_pet_count reservPetCount, sitter_num sitterNum
+		from reservations
+		order by reservation_num
+	</select>
+		
+	<insert id='insertReservation'>
+	    insert into reservations
+	    values (reserv_reservationnum_seq.nextval, #{userId}, #{reservStart},
+              #{reservFinish}, #{reservPrice}, #{reservAccept},
+              #{reservPetType}, #{reservPetSize}, #{reservPetCount},
+              #{sitterNum})
+    </insert>
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='hyunmyungsoo.petmeet.dao.map.sitter.SitterMap'>
+	<select id='selectSitters' resultMap='sitterMap'>
+		select * 
+		from sitters
+		order by sitter_num desc
+	</select>
+	
+	<select id='selectSitter' resultMap='sitterMap'>
+		select *
+		from sitters
+		where user_id = #{userId}
+	</select>
+	
+	<select id='selectSitterNum' resultMap='sitterMap'>
+		select *
+		from sitters
+		where sitter_num = #{sitterNum}
+	</select>	
+	
+	<resultMap id='sitterMap' type='sitter'>
+		<id property='sitterNum' column='sitter_num'/>
+		<result property='userId' column='user_id'/>
+		<result property='sitterStart' column='sitter_start'/>
+		<result property='sitterFinish' column='sitter_finish'/>
+		<result property='sitterPetType' column='sitter_pet_type'/>
+		<result property='sitterPetSize' column='sitter_pet_size'/>
+		<result property='sitterLocSi' column='sitter_loc_si'/>
+		<result property='sitterLocGu' column='sitter_loc_gu'/>
+		<result property='sitterLocDong' column='sitter_loc_dong'/>
+		<result property='sitterRating' column='sitter_rating'/>
+		<result property='sitterTitle' column='sitter_title'/>
+		<result property='sitterContent' column='sitter_content'/>
+		<result property='sitterFileName' column='sitter_file_name'/>
+	</resultMap>
+	
+	<insert id='insertSitter'>
+		insert into sitters 
+		values (sitters_sitternum_seq.nextval, #{userId}, 
+		#{sitterStart}, #{sitterFinish}, #{sitterPetType}, #{sitterPetSize, jdbcType=VARCHAR},
+		#{sitterLocSi}, #{sitterLocGu}, #{sitterLocDong}, '',	
+		#{sitterTitle}, #{sitterContent}, #{sitterFileName})
+	</insert>
+	
+	<update id='updateSitter'>
+		update sitters
+		set sitter_start = #{sitterStart}, sitter_finish = #{sitterFinish},
+		sitter_pet_type = #{sitterPetType}, sitter_pet_size = #{sitterPetSize, jdbcType=VARCHAR},
+		sitter_loc_si = #{sitterLocSi}, sitter_loc_gu = #{sitterLocGu}, sitter_loc_dong = #{sitterLocDong},
+		sitter_title = #{sitterTitle}, sitter_content = #{sitterContent},
+		sitter_file_name = #{sitterFileName}
+		where user_id = #{userId}
+	</update>
+	
+	<delete id='deleteSitter'>
+		delete sitters
+		where user_id = #{userId}
+	</delete>
+</mapper>

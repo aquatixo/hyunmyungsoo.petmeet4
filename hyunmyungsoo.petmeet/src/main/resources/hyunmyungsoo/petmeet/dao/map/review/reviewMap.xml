@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org/DTD Mapper 3.0//EN'
+   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='hyunmyungsoo.petmeet.dao.map.review.ReviewMap'>
+	<select id='selectReviews' resultType='review'>
+		select review_num reviewNum, review_file_name reviewFilename, review_reg_date reviewRegdate, 
+				review_state reviewState, review_content reviewContent, review_rating reviewRating, 
+				user_id userId, sitter_num sitterNum, reservation_num reservation_num
+		from reviews
+	</select>
+	
+</mapper>
