@@ -1,4 +1,4 @@
-package hyunmyungsoo.petmeet.web.common;
+package hyunmyungsoo.petmeet.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

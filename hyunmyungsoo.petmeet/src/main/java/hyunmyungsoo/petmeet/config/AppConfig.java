@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import hyunmyungsoo.petmeet.web.common.LoginInterceptor;
+import hyunmyungsoo.petmeet.web.LoginInterceptor;
 
 @Configuration
 @EnableWebMvc
