@@ -18,6 +18,8 @@ public class Sitter {
 	private String sitterPetType;
 	private String sitterPetSize;
 
+	private String sitterPostNum;
+	private String sitterLocOrg;
 	private String sitterLocSi;
 	private String sitterLocGu;
 	private String sitterLocDong;

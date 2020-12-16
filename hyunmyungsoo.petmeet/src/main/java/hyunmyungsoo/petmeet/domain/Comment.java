@@ -9,12 +9,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Alias("board.info")
-public class Board {
-	private int boardNum; 
-	private String boardTitle;
-	private String boardContent; 
-	private LocalDate regDate; 
-	private String boardFile; 
+@Alias("comment.info")
+public class Comment {
+	private int commentNum;
+	private String commentContent;
+	private LocalDate regDate;
 	private String userId;
+	private int boardNum;
 }

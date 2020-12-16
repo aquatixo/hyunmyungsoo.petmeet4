@@ -9,16 +9,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Review {
 	private int reviewNum;
 	private String reviewFilename;
 	private LocalDate reviewRegdate;
 	private String reviewState;
 	private String reviewContent;
-	private int reviewRating;
+	private String reviewRating;
 	
 	private String userId;
 	private int sitterNum;
-	private int reservationNum;
+	private int reservNum;
 	
 }

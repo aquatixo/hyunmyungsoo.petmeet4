@@ -15,8 +15,4 @@ public class User {
    
    private String userPhone;
    private LocalDate userBirth;
-   
-   private String userLocSi;
-   private String userLocGu;
-   private String userLocDong; 
 }
