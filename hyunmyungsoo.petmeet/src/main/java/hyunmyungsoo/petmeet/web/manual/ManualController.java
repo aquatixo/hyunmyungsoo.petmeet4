@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ManualController {
-	@GetMapping("/manual/manualList")
+	@GetMapping("/manual/listManual")
 	public String toManual() {
-		return "manual/manualList";
+		return "manual/listManual";
 	}
 }

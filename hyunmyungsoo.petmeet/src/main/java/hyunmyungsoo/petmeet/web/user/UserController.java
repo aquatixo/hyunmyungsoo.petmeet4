@@ -45,6 +45,7 @@ public class UserController {
 			link = "redirect:../main";
 		}
 		if(loginChecker.equals("ADMIN")) {
+			session.setAttribute("userEmail", userEmail);
 			link = "redirect:../admin/main";
 		}
 		
@@ -52,8 +53,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/user/signUp")
-	public String toSignUpPage(Model model) {
+	public String toSignUpPage() {
 		return "user/signUp";
+	}
+	
+	@GetMapping("/user/signUp2")
+	public String toSignUpPage2(Model model) {
+		return "user/signUp2";
 	}
 	
 	@GetMapping("/user/signUp3")
@@ -65,13 +71,9 @@ public class UserController {
 	public String insertUser(@RequestParam("userId") String userId,
 		@RequestParam("userPw") String userPw, @RequestParam("userName") String userName,
 		@RequestParam("userNick") String userNick, @RequestParam("userBirth") String userBirth,
-		@RequestParam("userPhone") String userPhone,
-		@RequestParam("userAddressSi") String userSi,
-		@RequestParam("userAddressGu") String userGu,
-		@RequestParam("userAddressDong") String userDong
-			) {
+		@RequestParam("userPhone") String userPhone) {
 		
-		userService.addUserHelper(userId, userPw, userName, userNick, userBirth, userPhone, userSi, userGu, userDong);
+		userService.addUserHelper(userId, userPw, userName, userNick, userBirth, userPhone);
 		
 		return "redirect:../user/login";
 	}
@@ -115,41 +117,27 @@ public class UserController {
 		return "redirect:../main";
 	}
 	
-	@GetMapping("/user/userInformation")
+	@GetMapping("/user/viewUser")
 	public String toUserInfo(Model model) {
 		model.addAttribute(userService.getUsers());
-		return "user/userInformation";
+		return "user/viewUser";
 	}
 	
-	@PostMapping("user/userInformation/del")
+	@PostMapping("user/viewUser/del")
 	public String delUser(@RequestParam("userId") String userId) {
 		userService.delUserHelper(userId);
 		return "redirect:../../logout";
 	}
 	
-	@PostMapping("user/userInformation/fix")
+	@PostMapping("user/viewUser/fix")
 	public String fixUser(@RequestParam("userId") String userId,
 			@RequestParam("userName") String userName,
 			@RequestParam("userNick") String userNick,
-			@RequestParam("userAddressSi") String si,
-			@RequestParam("userAddressGu") String gu,
-			@RequestParam("userAddressDong") String dong,
 			@RequestParam("userPhone") String userPhone,
 			@RequestParam("userBirth") String userBirth) {
 
-		userService.fixUserInfoHelper(userId, userName, userNick, userBirth, userPhone, si, gu, dong);
+		userService.fixUserInfoHelper(userId, userName, userNick, userBirth, userPhone);
 
 		return "redirect:../../common/mypage";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

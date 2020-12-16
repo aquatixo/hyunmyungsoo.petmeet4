@@ -24,15 +24,13 @@ public class CommonController {
 	
 	@GetMapping("/")
 	public String whenAppStarts(Model model) {
-		model.addAttribute("reviewList", reviewService.getReviews());
+		model.addAttribute("reviewList", reviewService.getRecentReviews());
 		return "main";
 	}
 	
 	@GetMapping("/main")
 	public String toMain(Model model) {
-		model.addAttribute("reviewList", reviewService.getReviews());
+		model.addAttribute("reviewList", reviewService.getRecentReviews());
 		return "main";
 	}
-	
-	
 }

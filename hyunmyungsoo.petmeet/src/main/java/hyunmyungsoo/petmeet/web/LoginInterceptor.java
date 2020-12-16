@@ -14,7 +14,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 		Object userId = request.getSession().getAttribute("userEmail");
 		
 		if(userId != null) isLogged = true;
-		//                         절대주소로 쓰자
+		
 		else response.sendRedirect(request.getContextPath() + "/user/login"); 
 
 		return isLogged;

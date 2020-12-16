@@ -1,5 +1,7 @@
 package hyunmyungsoo.petmeet.web.like;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,12 @@ public class LikeController {
 	@Autowired private UserService userService;
 	
 	@GetMapping("/like/listLike")
-	public String toListLike(Model model) {
+	public String toListLike(Model model, HttpSession session) {
 		model.addAttribute("likeList", likeService.getLikes());
 		model.addAttribute("userList", userService.getUsers());
 		model.addAttribute("sitterList", sitterService.getSitters());
+		model.addAttribute("userId", session.getAttribute("userEmail"));
+		
 		return "like/listLike";
 	}
 	

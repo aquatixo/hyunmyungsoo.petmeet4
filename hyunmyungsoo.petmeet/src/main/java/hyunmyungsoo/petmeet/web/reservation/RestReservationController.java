@@ -14,7 +14,7 @@ import hyunmyungsoo.petmeet.service.reservation.ReservationService;
 public class RestReservationController {
 	@Autowired private ReservationService reservationService;
 	
-	@PostMapping("/reservation/reserve")   //this parameter is a json
+	@PostMapping("/reservation/reserve")   
 	public boolean reserve(@RequestBody Reservation reservation) {
 		return reservationService.reserve(reservation);
 	}

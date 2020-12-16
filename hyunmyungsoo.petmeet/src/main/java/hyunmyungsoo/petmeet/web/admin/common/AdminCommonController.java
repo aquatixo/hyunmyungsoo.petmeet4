@@ -14,11 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import hyunmyungsoo.petmeet.service.board.BoardService;
+import hyunmyungsoo.petmeet.service.sitter.SitterService;
 import hyunmyungsoo.petmeet.service.user.UserService;
 
 @Controller
 public class AdminCommonController {
 	@Autowired private UserService userService;
+	@Autowired private SitterService sitterService;
+	@Autowired private BoardService boardService;
 	
 	@Value("img")
 	private String attachDir;
@@ -48,11 +52,11 @@ public class AdminCommonController {
 		}
 	}
 	
-	@PostMapping("/admin/user/userList/del")
-	public String delUser(@RequestParam("userId") String userId) {
-		userService.delUserHelper(userId);
-		return "redirect:../../../admin/user/userList";
+	@GetMapping("/admin/main")
+	public String mainControl(Model model) {
+		model.addAttribute("userCnt", userService.getUserCnt());
+		model.addAttribute("sitterCnt", sitterService.getSitterCnt());
+		model.addAttribute("boardCnt", boardService.countBoard());
+		return "admin/main";
 	}
-	
-	
 }

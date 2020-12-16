@@ -1,5 +1,7 @@
 package hyunmyungsoo.petmeet.web.email;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import hyunmyungsoo.petmeet.domain.Email;
-import hyunmyungsoo.petmeet.domain.User;
 import hyunmyungsoo.petmeet.service.email.MyMailService;
 import hyunmyungsoo.petmeet.service.user.UserService;
 
@@ -20,7 +21,7 @@ public class MyMailController {
 	
 	@PostMapping("/user/signUp")
 	public String send(Email msg, Model model,
-			@RequestParam("to") String userEmail) {
+			@RequestParam("to") String userEmail, HttpSession session) {
 		String link = "";
 		
 		String signUpChecker = userService.signUpCheck(userEmail);
@@ -35,9 +36,9 @@ public class MyMailController {
 		}
 		
 		if(signUpChecker.equals("SEND")) {
-			model.addAttribute("email", userEmail);
+			session.setAttribute("signUpMail", userEmail);
 			mailService.send(msg);
-			link = "user/signUp2";
+			link = "redirect:../user/signUp2";
 		}
 		
 		return link;
@@ -64,8 +65,8 @@ public class MyMailController {
 		return link;
 	}
 	
-	@ExceptionHandler(MailSendException.class) //for a MailSend type of exception
+	@ExceptionHandler(MailSendException.class) 
 	public String handleError() {
 		return "";
-	}//원래는 LOG 남긴다
+	}
 }
