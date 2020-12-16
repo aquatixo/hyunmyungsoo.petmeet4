@@ -20,6 +20,46 @@
 		from reservations
 		order by reservation_num
 	</select>
+	
+	<select id='selectReservationsByCondition' resultType='reservation'>
+		select reservation_num reservNum, user_id userId, 
+		reservation_start reservStart, reservation_finish reservFinish,
+		reservation_price reservPrice, reservation_accept reservAccept,
+		reservation_pet_type reservPetType, reservation_pet_size reserPetSize,
+		reservation_pet_count reservPetCount, sitter_num sitterNum
+		from 
+		(select rownum rn, r.* 
+		from reservations r 
+		where user_id = #{userId} 
+		order by reservation_num) sub
+		where sub.rn between #{startRow} and #{endRow}
+		order by reservation_num
+	</select>
+	
+	<select id='selectGottenReservations' resultType='reservation'>
+		select reservation_num reservNum, user_id userId, 
+		reservation_start reservStart, reservation_finish reservFinish,
+		reservation_price reservPrice, reservation_accept reservAccept,
+		reservation_pet_type reservPetType, reservation_pet_size reserPetSize,
+		reservation_pet_count reservPetCount, sitter_num sitterNum
+		from 
+		(select rownum rn, r.* 
+		from reservations r 
+		where sitter_num = #{sitterNum} 
+		order by reservation_num) sub
+		where sub.rn between #{startRow} and #{endRow}
+		order by reservation_num
+	</select>
+	
+	<select id='selectCountById' resultType='integer'>
+		select count(*) from reservations
+		where user_id = #{userId}
+	</select> 
+	
+	<select id='selectCountBySitterNum' resultType='integer'>
+		select count(*) from reservations
+		where sitter_num = #{sitterNum}
+	</select> 
 		
 	<insert id='insertReservation'>
 	    insert into reservations
@@ -28,4 +68,15 @@
               #{reservPetType}, #{reservPetSize}, #{reservPetCount},
               #{sitterNum})
     </insert>
+    
+    <update id='updateReservation'>
+    	update reservations
+    	set reservation_accept = #{reservAccept}
+    	where reservation_num = #{reservNum}
+    </update>
+    
+    <delete id='deleteReservation'>
+    	delete reservations
+    	where reservation_num = #{reservNum}
+    </delete>
 </mapper>

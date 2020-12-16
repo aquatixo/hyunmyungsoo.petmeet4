@@ -20,6 +20,23 @@
 		where sitter_num = #{sitterNum}
 	</select>	
 	
+	<select id='selectSpecDogSitters' resultMap='sitterMap'>
+		select * 
+		from sitters
+		where (#{sitterStart} between sitter_start and sitter_finish) and sitter_pet_type = #{sitterPetType} and sitter_pet_size = #{sitterPetSize} and sitter_loc_dong = #{sitterLocDong}
+	</select>
+	
+	<select id='selectSpecCatSitters' resultMap='sitterMap'>
+		select * 
+		from sitters
+		where (#{sitterStart} between sitter_start and sitter_finish) and sitter_pet_type = #{sitterPetType} and sitter_pet_size is null and sitter_loc_dong = #{sitterLocDong}
+	</select>
+	
+	<select id='selectSitterCnt' resultType='_int'>
+		select count(*)
+		from sitters
+	</select>
+	
 	<resultMap id='sitterMap' type='sitter'>
 		<id property='sitterNum' column='sitter_num'/>
 		<result property='userId' column='user_id'/>
@@ -27,6 +44,8 @@
 		<result property='sitterFinish' column='sitter_finish'/>
 		<result property='sitterPetType' column='sitter_pet_type'/>
 		<result property='sitterPetSize' column='sitter_pet_size'/>
+		<result property='sitterPostNum' column='sitter_post_num'/>
+		<result property='sitterLocOrg' column='sitter_loc_org'/>
 		<result property='sitterLocSi' column='sitter_loc_si'/>
 		<result property='sitterLocGu' column='sitter_loc_gu'/>
 		<result property='sitterLocDong' column='sitter_loc_dong'/>
@@ -40,7 +59,7 @@
 		insert into sitters 
 		values (sitters_sitternum_seq.nextval, #{userId}, 
 		#{sitterStart}, #{sitterFinish}, #{sitterPetType}, #{sitterPetSize, jdbcType=VARCHAR},
-		#{sitterLocSi}, #{sitterLocGu}, #{sitterLocDong}, '',	
+		#{sitterPostNum}, #{sitterLocOrg}, #{sitterLocSi}, #{sitterLocGu}, #{sitterLocDong}, '', 
 		#{sitterTitle}, #{sitterContent}, #{sitterFileName})
 	</insert>
 	
@@ -48,6 +67,7 @@
 		update sitters
 		set sitter_start = #{sitterStart}, sitter_finish = #{sitterFinish},
 		sitter_pet_type = #{sitterPetType}, sitter_pet_size = #{sitterPetSize, jdbcType=VARCHAR},
+		sitter_post_num = #{sitterPostNum}, sitter_loc_org = #{sitterLocOrg},
 		sitter_loc_si = #{sitterLocSi}, sitter_loc_gu = #{sitterLocGu}, sitter_loc_dong = #{sitterLocDong},
 		sitter_title = #{sitterTitle}, sitter_content = #{sitterContent},
 		sitter_file_name = #{sitterFileName}

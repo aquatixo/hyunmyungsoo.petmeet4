@@ -5,16 +5,14 @@
 	<select id='selectUsers' resultType='user'>
 		select user_id userId, user_name userName,
 			user_nickname userNickname,
-			user_phone userPhone, user_pw userPw, user_birth userBirth,
-			user_loc_si userLocSi, user_loc_gu userLocGu, user_loc_dong userLocDong	
+			user_phone userPhone, user_pw userPw, user_birth userBirth
 		from users
 	</select>
 
 	<select id='selectUser' resultType='user'>
 		select user_id userId, user_name userName,
 			user_nickname userNickname,
-			user_phone userPhone, user_pw userPw, user_birth userBirth,
-			user_loc_si userLocSi, user_loc_gu userLocGu, user_loc_dong userLocDong	
+			user_phone userPhone, user_pw userPw, user_birth userBirth
 		from users
 		where user_id = #{userId}
 	</select>
@@ -25,11 +23,15 @@
 		where user_name = #{userName} and user_phone = #{userPhone}
 	</select>
 	
+	<select id='selectUserCnt' resultType='_int'>
+		select count(*)
+		from users
+	</select>
+	
 	<insert id='insertUser'>
       insert into users
       values (#{userId}, #{userName}, #{userNickname},
-               #{userPw}, #{userPhone}, #{userBirth},
-              #{userLocSi}, #{userLocGu}, #{userLocDong})
+               #{userPw}, #{userPhone}, #{userBirth})
     </insert>
 	
 	<update id='updateUserPw'>
@@ -51,8 +53,7 @@
 	<update id='updateUserInfo'>
 		update users
 		set user_name = #{userName}, user_nickname = #{userNickname},
-		user_loc_si = #{userLocSi}, user_loc_gu  = #{userLocGu},
-		user_loc_dong = #{userLocDong}, user_birth = #{userBirth},
+		user_birth = #{userBirth},
 		user_phone = #{userPhone}
 		where user_id = #{userId}
 	</update>

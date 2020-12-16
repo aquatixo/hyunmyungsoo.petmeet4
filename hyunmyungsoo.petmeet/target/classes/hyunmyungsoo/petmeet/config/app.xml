@@ -33,9 +33,7 @@
        <property name='maxInMemorySize' value='5242880'/>
        <property name='defaultEncoding' value='utf-8'/>
     </bean>
-    
-<!--     <context:property-placeholder location='classpath:hyunmyungsoo/petmeet/config/application.properties'/> -->
-                                 
+                                     
     <mybatis:scan base-package='hyunmyungsoo.petmeet.dao.map.**'/>
     
     <bean id='mailSender' class='org.springframework.mail.javamail.JavaMailSenderImpl'>

@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- selectBoards selectBoard insertBoard updateBoard deleteBoard -->
-<mapper namespace="hyunmyungsoo.petmeet.dao.map.board.BoardMap">
-	<select id="selectBoards" resultType="board.info">
-		select board_num boardNum, board_title boardTitle, user_id userId, board_reg_date regDate
-		from boards
-		order by board_num desc
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='hyunmyungsoo.petmeet.dao.map.board.BoardMap'>
+	<select id='selectBoards' resultType='board.info'>
+		SELECT * 
+			FROM (
+				SELECT ROWNUM RN, A.* 
+					FROM (
+							SELECT board_num boardNum, board_title boardTitle, user_id userId, board_reg_date regDate
+							FROM BOARDS
+							ORDER BY board_num DESC 
+							) A
+					)
+		WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id='selectBoard' resultType='board.info'> 
@@ -15,14 +21,14 @@
 		where board_num = #{boardNum}
 	</select> 
 	
-   <insert id="insertBoard">
+    <insert id='insertBoard'>
       insert into boards
       		(board_num,  board_title, board_content, 
 			board_reg_date, board_file_name, user_id) 
       values
       		(BOARDS_BOARDNUM_SEQ.NEXTVAL, #{boardTitle},#{boardContent}, 
 			SYSDATE, #{boardFile}, #{userId})
-   </insert>
+    </insert>
    
 	<update id='updateBoard'> 
    		update boards 
@@ -30,8 +36,12 @@
 		where board_num = #{boardNum}
     </update> 
    
-    <delete id="deleteBoard">
+    <delete id='deleteBoard'>
 		delete from boards
 		where board_num = #{boardNum}
 	</delete> 
+	
+	<select id='countBoard' resultType='int'>
+		select count(*) from boards
+	</select>
 </mapper>
