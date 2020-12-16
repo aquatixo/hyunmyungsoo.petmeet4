@@ -20,13 +20,14 @@ public interface UserService {
 	String loginCheck(String userEmail, String userPw);
 	String signUpCheck(String userEmail);
 	boolean addUserHelper(String userId, String userPw, String userName,
-			String userNick, String userBirth, String userPhone,
-			String userSi, String userGu, String userDong);
+			String userNick, String userBirth, String userPhone);
 	String findIdHelper(String userName, String userPhone);
 	String fixPwHelper(String userId);
 	boolean changePwHelper(String userId, String userPw);
 	boolean delUserHelper(String userId);
 	boolean fixUserInfoHelper(String userId, String userName,
-			String userNick, String userBirth, String userPhone,
-			String userSi, String userGu, String userDong);
+			String userNick, String userBirth, String userPhone);
+	boolean adminFixUserInfoHelper(String userId, String userName,
+			String userPw, String userNick, String userBirth, String userPhone);
+	int getUserCnt();
 }

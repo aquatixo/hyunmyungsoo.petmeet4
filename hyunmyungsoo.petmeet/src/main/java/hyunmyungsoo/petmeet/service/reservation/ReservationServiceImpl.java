@@ -53,4 +53,40 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		return nickName;
 	}
+
+	@Override
+	public List<Reservation> getReservationsByCondition(String userId, int page) {		
+		int startRow = page * 5 - 4;
+		int endRow = page * 5;
+
+		return reservationDao.selectReservationsByCondition(userId, startRow, endRow);
+	}
+	
+	@Override
+	public List<Reservation> getGottenReservations(int  sitterNum, int page) {
+		int startRow = page * 5 - 4;
+		int endRow = page * 5;
+		return reservationDao.selectGottenReservations(sitterNum, startRow, endRow);
+	}
+
+	@Override
+	public Integer getCountById(String userId) {				
+		return reservationDao.selectCountById(userId);
+	}
+
+
+	@Override
+	public Integer getCountBySitterNum(int sitterNum) {
+		return reservationDao.selectCountBySitterNum(sitterNum);
+	}
+
+	@Override
+	public boolean acceptReservation(String reservAccept, int reservNum) {
+		return reservationDao.updateReservation(reservAccept, reservNum);
+	}
+
+	@Override
+	public boolean rejectReservation(int reservNum) {
+		return reservationDao.deleteReservation(reservNum);
+	}
 }

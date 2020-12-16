@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService{
 		for(User delUser : delList) {
 			if(delUser.getUserId().equals(userEmail)) {
 				signUpChecker = "DELUSER";
-			}
+			}	
 		}
 		
 		if(!signUpChecker.equals("ALREADY") && !signUpChecker.equals("DELUSER"))
@@ -79,8 +79,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public boolean addUserHelper(String userId, String userPw, String userName,
-			String userNick, String userBirth, String userPhone,
-			String userSi, String userGu, String userDong
+			String userNick, String userBirth, String userPhone
 			) {
 		User newUser = new User();
 		LocalDate userBirth2 = LocalDate.parse(userBirth, DateTimeFormatter.ISO_DATE);
@@ -88,8 +87,7 @@ public class UserServiceImpl implements UserService{
 		newUser.setUserId(userId); newUser.setUserPw(userPw);
 		newUser.setUserName(userName);newUser.setUserNickname(userNick);
 		newUser.setUserBirth(userBirth2);
-		newUser.setUserPhone(userPhone); newUser.setUserLocSi(userSi);
-		newUser.setUserLocGu(userGu); newUser.setUserLocDong(userDong);
+		newUser.setUserPhone(userPhone);
 		
 		return addUser(newUser);
 	}
@@ -166,7 +164,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean fixUserInfoHelper(String userId, String userName, String userNick, String userBirth,
-			String userPhone, String userSi, String userGu, String userDong) {
+			String userPhone) {
 		
 		User changeInfoUser = null;
 		LocalDate userBirth2 = LocalDate.parse(userBirth, DateTimeFormatter.ISO_DATE);
@@ -174,13 +172,32 @@ public class UserServiceImpl implements UserService{
 		changeInfoUser = getUser(userId);
 		changeInfoUser.setUserName(userName);
 		changeInfoUser.setUserNickname(userNick);
-		changeInfoUser.setUserLocSi(userSi);
-		changeInfoUser.setUserLocGu(userGu);
-		changeInfoUser.setUserLocDong(userDong);
 		changeInfoUser.setUserPhone(userPhone);
 		changeInfoUser.setUserBirth(userBirth2);
 		fixUserInfo(changeInfoUser);
 		
 		return true;
+	}
+
+	@Override
+	public boolean adminFixUserInfoHelper(String userId, String userName, String userPw, String userNick,
+			String userBirth, String userPhone) {
+		User changeInfoUser = null;
+		LocalDate userBirth2 = LocalDate.parse(userBirth, DateTimeFormatter.ISO_DATE);
+
+		changeInfoUser = getUser(userId);
+		changeInfoUser.setUserName(userName);
+		changeInfoUser.setUserPw(userPw);
+		changeInfoUser.setUserNickname(userNick);
+		changeInfoUser.setUserPhone(userPhone);
+		changeInfoUser.setUserBirth(userBirth2);
+		fixUserInfo(changeInfoUser);
+		
+		return true;
+	}
+	
+	@Override
+	public int getUserCnt() {
+		return userDao.selectUserCnt();
 	}
 }

@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 
 import hyunmyungsoo.petmeet.dao.board.BoardDao;
 import hyunmyungsoo.petmeet.domain.Board;
+import hyunmyungsoo.petmeet.domain.Paging;
 
 @Service
 public class BoardServiceImpl implements BoardService {
 	@Autowired private BoardDao boardDao;
 	
 	@Override
-	public List<Board> getBoards() {
-		return boardDao.selectBoards();
+	public List<Board> getBoards(Paging page) {
+		return boardDao.selectBoards(page);
 	}
 
 	@Override
@@ -57,7 +58,6 @@ public class BoardServiceImpl implements BoardService {
 		board.setBoardFile(fileName);
 		
 		fixBoard(board);
-		
 	}
 	
 	@Override
@@ -65,23 +65,8 @@ public class BoardServiceImpl implements BoardService {
 		delBoard(boardNum);
 	}
 
-	
-	
-	/*
 	@Override
-	public void assignSitter(HttpSession session, String boardTitle, String boardContent, Date regDate, String boardFile) {
-	      Board board = new Board();
-	      
-	      String userId = session.getAttribute("userEmail").toString();
-	      
-	      board.setBoardContent(boardContent);
-	      board.setBoardFile(boardFile);
-	      board.setBoardTitle(boardTitle);
-	      board.setRegDate(regDate);
-	      board.setUserId(userId);
-
-	      addBoard(board);
-
-	}*/
-
+	public int countBoard() {
+		return boardDao.countBoard();
+	}
 }
