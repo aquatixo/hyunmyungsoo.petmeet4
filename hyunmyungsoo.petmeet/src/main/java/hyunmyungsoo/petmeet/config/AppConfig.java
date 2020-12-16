@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -29,13 +28,6 @@ public class AppConfig implements WebMvcConfigurer{
 		registry.jsp("/WEB-INF/view/",".jsp");
 	}
 	
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-//		registry.addViewController("/").setViewName("main");
-//		registry.addViewController("/main").setViewName("main");
-		registry.addViewController("/admin/main").setViewName("admin/main");
-	}
-	
 	@Bean
 	public LoginInterceptor loginInterceptor() {
 		return new LoginInterceptor();
@@ -44,11 +36,13 @@ public class AppConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor())
-						.addPathPatterns("/**")
-						.excludePathPatterns("/user/**")
-						.excludePathPatterns("/")
-						.excludePathPatterns("/main")
-						.excludePathPatterns("/manual/manualList")
-						.excludePathPatterns("/sitter/sitterMain");
+						.addPathPatterns("/board/**")
+						.addPathPatterns("/common/**")
+						.addPathPatterns("/like/**")
+						.addPathPatterns("/message/**")
+						.addPathPatterns("/reservation/**")						
+						.addPathPatterns("/sitter/insertSitter")
+						.addPathPatterns("/sitter/upDelSitter")
+						.addPathPatterns("/admin/**");
 	}
 }
