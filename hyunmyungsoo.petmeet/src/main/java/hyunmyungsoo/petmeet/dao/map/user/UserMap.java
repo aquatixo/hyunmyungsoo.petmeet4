@@ -21,4 +21,6 @@ public interface UserMap {
 	boolean deleteUser(String userId);
 	boolean insertDelUser(User user); 
 	boolean updateUserInfo(User user);
+	
+	int selectUserCnt();
 }

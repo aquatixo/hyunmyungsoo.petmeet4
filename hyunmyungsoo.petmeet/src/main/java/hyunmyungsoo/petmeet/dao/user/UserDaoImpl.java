@@ -56,4 +56,9 @@ public class UserDaoImpl implements UserDao {
 	public boolean updateUserInfo(User user) {
 		return userMap.updateUserInfo(user);
 	}
+	
+	@Override
+	public int selectUserCnt() {
+		return userMap.selectUserCnt();
+	}
 }

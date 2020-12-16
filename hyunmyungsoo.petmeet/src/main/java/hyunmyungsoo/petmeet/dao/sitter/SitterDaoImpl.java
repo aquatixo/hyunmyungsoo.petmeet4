@@ -1,5 +1,6 @@
 package hyunmyungsoo.petmeet.dao.sitter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,16 @@ public class SitterDaoImpl implements SitterDao {
 	}
 	
 	@Override
+	public List<Sitter> selectSpecDogSitters(String sitterLocDong, LocalDate sitterStart, String sitterPetType, String sitterPetSize) {
+		return sitterMap.selectSpecDogSitters(sitterLocDong, sitterStart, sitterPetType, sitterPetSize);
+	}
+	
+	@Override
+	public List<Sitter> selectSpecCatSitters(String sitterLocDong, LocalDate sitterStart, String sitterPetType, String sitterPetSize) {
+		return sitterMap.selectSpecCatSitters(sitterLocDong, sitterStart, sitterPetType, sitterPetSize);
+	}
+	
+	@Override
 	public boolean insertSitter(Sitter sitter) {
 		return sitterMap.insertSitter(sitter);
 	}
@@ -40,5 +51,10 @@ public class SitterDaoImpl implements SitterDao {
 	@Override
 	public boolean deleteSitter(String userId) {
 		return sitterMap.deleteSitter(userId);
+	}
+	
+	@Override
+	public int selectSitterCnt() {
+		return sitterMap.selectSitterCnt();
 	}
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import hyunmyungsoo.petmeet.domain.Like;
-import hyunmyungsoo.petmeet.domain.User;
 
 @Repository
 public interface LikeMap {

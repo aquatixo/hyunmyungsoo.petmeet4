@@ -16,4 +16,5 @@ public interface UserDao {
 	boolean deleteUser(String userId);
 	boolean insertDelUser(User user); 
 	boolean updateUserInfo(User user);
+	int selectUserCnt();
 }

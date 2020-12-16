@@ -4,7 +4,6 @@ import java.util.List;
 
 import hyunmyungsoo.petmeet.domain.Like;
 
-
 public interface LikeDao {
 	List<Like> selectLikes();
 	
