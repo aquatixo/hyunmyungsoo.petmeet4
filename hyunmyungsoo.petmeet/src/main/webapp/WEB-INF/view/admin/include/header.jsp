@@ -18,7 +18,6 @@
 <span>ADMIN</span>
 <div class='row' >
    <div class='col-4'>
-<!--       <a href='main'>로고이미지12</a> -->
       <a href='main'><img src='../img/logo.PNG' class='logoImg' onerror='imgError(this);' ></a>
    </div>
    <div class='offset-6 col-2'>
@@ -28,7 +27,7 @@
 <% 
    }else{
 %>
-<span>ADMIN2</span>
+<span>ADMIN</span>
 <div class='row'>
    <div class='col-4'>
       <a href='../main'><img src='../../img/logo.PNG' class='logoImg' onerror='imgError(this);' ></a>

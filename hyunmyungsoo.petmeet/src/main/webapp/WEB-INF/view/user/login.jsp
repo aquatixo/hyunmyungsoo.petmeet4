@@ -28,9 +28,7 @@
 	   			<button type='submit' class='btn btn-primary form-control font formSize' id='loginBtn'>로그인</button>
 	   		</div>
 		</form>
-		
-		<hr class='color'>
-		
+		<hr class='color'>	
 		<div class='row justify-content-center'>
 			<div class=''>
 				<a href='findId' class='btn btn-outline-primary font'>아이디찾기</a>

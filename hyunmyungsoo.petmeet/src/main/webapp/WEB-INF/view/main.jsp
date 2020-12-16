@@ -16,28 +16,23 @@
 		var parentTag = parent.innerHTML
 		var brokenImageTag = image.outerHTML
 		parent.innerHTML = parentTag.replace(brokenImageTag,
-				'<div class="broken carouImg">메인안내 이미지</div>')
+				'<div class="brokenMain carouImg">메인안내 이미지</div>')
+		return true;
+	}
+	var imgError16 = function(image) {
+		image.onerror = ""
+		var parent = image.parentElement
+		var parentTag = parent.innerHTML
+		var brokenImageTag = image.outerHTML
+		parent.innerHTML = parentTag.replace(brokenImageTag,
+				'<div class="brokenMain carouImg">후기 이미지</div>')
 		return true;
 	}
 </script>
 </head>
-<%
-	List<Review> reviewList = (List<Review>)request.getAttribute("reviewList");
-	List<Review> twoReviewList = new ArrayList<>();
-	
-	if(!reviewList.isEmpty() && reviewList.size()>1){
-		Review r1 = reviewList.get(reviewList.size()-2);
-		Review r2 = reviewList.get(reviewList.size()-1);
-		twoReviewList.add(r1);twoReviewList.add(r2);
-	}else if(!reviewList.isEmpty() && reviewList.size() == 1){
-		Review r1 = reviewList.get(0);
-		twoReviewList.add(r1);
-	}
-%>
 <body>
 	<div class='container'>
 	<%@ include file= './include/header.jsp' %>
-   
 	<%@ include file= './include/nav.jsp' %>
    
 		<div class='carousel slide' data-ride='carousel'>
@@ -45,12 +40,13 @@
 				<ol class='carousel-indicators'>
 					<li data-target='#mainCarou' data-slide-to='1'></li>
 					<li data-target='#mainCarou' data-slide-to='2'></li>
+					<li data-target='#mainCarou' data-slide-to='3'></li>
 				</ol>
 				<div class='carousel-inner'>
 					<div class='carousel-item active text-center'>
 						<img src='img/main1.png' class='mainImg1 img-fluid' onerror='imgError2(this);'>
 						<div class='carousel-caption text-dark'>
-							<a href='./manual/manualList' class='font'>자세히 보기</a>
+							<a href='./manual/listManual' class='font'>자세히 보기</a>
 						</div>
 					</div>
 					<div class='carousel-item text-center'>
@@ -79,16 +75,18 @@
 
 		<div class='card-deck mt-3'>
 			<c:choose>
-				<c:when test='${twoReviewList.size()>0}'>
-					<c:forEach var='review' items='${twoReviewList}'>
+				<c:when test='${reviewList.size()>0}'>
+					<c:forEach var='review' items='${reviewList}'>
 						<div class='card'>
-							<div class='reviewImg'>후기 이미지</div>
+							<div class='reviewImg'>
+								<img src='img/review${review.userId}${review.reservNum}.PNG' class='img-fluid reviewImg' onerror='imgError16(this);'>
+							</div>
 				            <div class='card-body'>
-								<h5 class='card-title'>${twoReviewList.getReviewRating()}</h5>
-								<p class='card-text'>${twoReviewList.getReviewContent()}</p>
+								<h5 class='card-title'>${review.reviewRating}</h5>
+								<p class='card-text'>${review.reviewContent}</p>
 							</div>
 				            <div class='card-footer'>
-								<small class='text-muter'>${twoReviewList.getReviewRegdate()}</small>
+								<small class='text-muter'>${review.reviewRegdate}</small>
 							</div>
 						</div>
 					</c:forEach>

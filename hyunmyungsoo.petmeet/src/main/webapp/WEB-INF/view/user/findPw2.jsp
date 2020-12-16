@@ -41,8 +41,7 @@ $(()=>{
 			</div>
 			<div class='row justify-content-center'>
 				<button type='button' id='PwFind' class='btn formSize font btn-primary'>비밀번호찾기</button>
-			</div>
-			
+			</div>		
 		</form>
 		<hr class='color'>	
 		<div class='row justify-content-center'>
@@ -55,9 +54,7 @@ $(()=>{
 		</div>
 		<br>
 		<div class='row justify-content-center'>
-			<p class='errorCode'>
-
-			</p>
+			<p class='errorCode'></p>
 		</div>
 	<%@ include file= '../include/footer.jsp' %>	
 	</div>

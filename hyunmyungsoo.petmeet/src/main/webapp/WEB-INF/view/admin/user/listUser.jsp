@@ -23,15 +23,31 @@ $(()=>{
 		if(choice != undefined){
 			$('#userDel').submit();
 		}else{	
-			$('.errorCode').text('삭제할 회원을 선택하세요.');
+			$('.errorCode').text('탈퇴할 회원을 선택하세요.');
 		}
 	})
+	
+	$('#updateBtn').click(()=>{
+		let choice = $('input:checked').val();
+		$('.userId').val(choice);
+		
+		if(choice != undefined){
+			$('#userUpdate').submit();
+		}else{	
+			$('.errorCode').text('수정할 회원을 선택하세요.');
+		}
+	})
+
 })
 </script>
 <body>
 	<div class='container'>
 	<%@ include file= '../include/header.jsp' %>
 	<%@ include file= '../include/nav.jsp' %>
+     	
+		<div>
+			<h4 class='titleFont'>회원 관리</h4>
+		</div>
      	<table class='table'>
 			<thead class='thead-light'> 
 				<tr><th class='text-center'>선택</th><th>회원ID</th><th>회원이름</th><th>닉네임</th></tr>
@@ -45,8 +61,8 @@ $(()=>{
 									<input type='radio' name='userChoice' value='${user.getUserId()}' form='userChoice'/>
 								</th>
 								<td>${user.getUserId()}</td>
-								<td>${user.getUserId()}</td>
-								<td>${user.getUserId()}</td>
+								<td>${user.getUserName()}</td>
+								<td>${user.getUserNickname()}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -61,15 +77,14 @@ $(()=>{
 		</div>
 		<form method='post' id='userUpdate'>
 			<div class='row justify-content-end'>
-				<button type='button' class='btn btn-outline-primary mr-1'>수정</button>
+				<button type='button' id='updateBtn' class='btn btn-outline-primary mr-1'>수정</button>
 				<button type='button' class='btn btn-outline-danger mr-3' data-toggle='modal' data-target='#userBye'>탈퇴</button>
 			</div>
 			<div class='form-group row' hidden>			
 				<input name='userId' type='text' class='form-control userId'/>
 			</div>
 		</form>
-		
-		<form method='post' id='userDel' action='userList/del'>
+		<form method='post' id='userDel' action='listUser/del'>
 			<div id='userBye' class='modal fade' tabindex='-1'>
 				<div class='modal-dialog'>
 				<div class='modal-content'>
@@ -90,8 +105,7 @@ $(()=>{
 			<div class='form-group row' hidden>			
 				<input name='userId' type='text' class='form-control userId'/>
 			</div>
-		</form>
-			
+		</form>	
 	</div>
 </body>
 </html>

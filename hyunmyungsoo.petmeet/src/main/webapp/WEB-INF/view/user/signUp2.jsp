@@ -1,8 +1,6 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='utf-8' isELIgnored='false'%>
 <%
 	session.removeAttribute("main");
-	Object email = request.getAttribute("email");
-	session.setAttribute("email2", email);
 	Object checkcode = session.getAttribute("checkcode");
 %>
 <!DOCTYPE html>
@@ -29,7 +27,7 @@ $(()=>{
 		<%@ include file= '../include/header.jsp' %>
 		<%@ include file= '../include/nav.jsp' %>
 		<div>
-			<h3 class='titleFont'>회원가입</h3>
+			<h3 class='titleFont'>회원가입-인증하기</h3>
 		</div>
 		<hr class='color'>
 		<form method='post'>

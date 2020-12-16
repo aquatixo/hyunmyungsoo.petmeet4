@@ -40,11 +40,11 @@ $(() => {
 					</div>
 				</div>
 				<div class='col-4'>
-					<button type='submit' class='btn btn-primary'>제출</button>
+					<button type='submit' class='btn btn-primary'>등록</button>
 				</div>
 			</div>
 		</form>
-		<img id='previewImg' class="img-fluid"/> <!-- 제출 전에 미리 보기 -->
+		<img id='previewImg' class="img-fluid"/>
 	</div>
 </body>
 </html>

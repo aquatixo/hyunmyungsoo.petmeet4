@@ -47,8 +47,7 @@
 			<div class='form-group row' hidden>			
 				<input name='checkCode' type='number' class='form-control' id='checkCode'
 						value='<%=checkcode%>'/>
-			</div>
-						
+			</div>				
 		</form>
 		<hr class='color'>	
 		<div class='row justify-content-center'>

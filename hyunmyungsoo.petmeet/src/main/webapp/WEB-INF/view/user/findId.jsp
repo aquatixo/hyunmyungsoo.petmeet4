@@ -31,7 +31,6 @@
 				<button type='submit' id='idFind' class='btn formSize font btn-primary'>아이디찾기</button>
 			</div>
 		</form>
-		
 		<hr class='color'>	
 		<div class='row justify-content-center'>
 			<div class='ml-2'>

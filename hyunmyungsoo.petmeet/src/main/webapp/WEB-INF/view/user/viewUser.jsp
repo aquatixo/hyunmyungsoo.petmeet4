@@ -60,14 +60,6 @@
 				<input type='text' class='form-control w-50 offset-3' id='userNick'
 				name='userNick' value='<%=user.getUserNickname()%>' maxlength='19' required/>
 			</div>
-			<div class='row mt-3 font'>
-				<div class='offset-3'>주소</div>
-			</div>
-			<div class='row'>
-				<input type='text' class='form-control offset-3' id='userAddressSi' name='userAddressSi' value='<%=user.getUserLocSi() %>' style='width : 15%' maxlength='10' required/>시
-				<input type='text' class='form-control' id='userAddressGu' name='userAddressGu' value='<%=user.getUserLocGu() %>' style='width : 15%' maxlength='10' required/>구
-				<input type='text' class='form-control' id='userAddressDong' name='userAddressDong' value='<%=user.getUserLocDong() %>' style='width : 15%' maxlength='10' required/>동
-			</div>
 		   <div class='row mt-3'>
 				<div class='offset-3'>생년월일</div>
 			</div>

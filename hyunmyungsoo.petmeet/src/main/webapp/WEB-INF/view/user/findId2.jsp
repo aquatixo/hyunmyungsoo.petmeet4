@@ -18,7 +18,7 @@
 		</div>
 		<hr class='color'>
 		<div class='row offset-3 sitterFont'>
-			<p>user님의 아이디는</p>
+			<p>아이디는</p>
 		</div>
 		<div class='row offset-4 font'>
 			<p>[<%=userId%>]</p>

@@ -52,7 +52,7 @@ $(()=>{
 					name='userPw2' placeholder='변경할 비밀번호 재입력하세요' required/>
 			</div>
 			<div class='row justify-content-center'>
-				<button type='button' id='idFind' class='btn formSize font btn-primary'>비밀번호찾기</button>
+				<button type='button' id='idFind' class='btn formSize font btn-primary'>비밀번호변경</button>
 			</div>
 			<div class='form-group row' hidden>			
 				<input name='userId' type='text' class='form-control' id='userId'

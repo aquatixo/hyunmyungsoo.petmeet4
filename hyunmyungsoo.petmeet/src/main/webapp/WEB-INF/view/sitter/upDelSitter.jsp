@@ -28,23 +28,22 @@ $(() => {
 });
 
 $(function() {
-	  $('input[name="daterange"]').daterangepicker({
-	    opens: 'left'
-	  }, function(start, end, label) {
-	    console.log($('input[name="daterange"]').val());
-	  });
-	});
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log($('input[name="daterange"]').val());
+  });
+});
 	
 function showImg(input) {
-	   if(input.files[0]) { // 파일이 있는지 확인
-	      let reader = new FileReader();
-	                     // load이벤트가 발생하면 실행되는 리스너 callback
-	      reader.addEventListener('load', () => {
-	         $('#previewImg').attr('src', reader.result); // img미리보기가 나타남
-	      }, false) // 자바스크립트가 제공하는 리스너
-	      
-	      reader.readAsDataURL(input.files[0]); // 선택한 파일을 읽어들인다.
-	   }
+   if(input.files[0]) { 
+      let reader = new FileReader();
+      reader.addEventListener('load', () => {
+         $('#previewImg').attr('src', reader.result);
+      }, false) 
+      
+      reader.readAsDataURL(input.files[0]); 
+   }
 }
 
 $(() => {
@@ -56,6 +55,8 @@ $(() => {
 <%
 	Object userId = session.getAttribute("userEmail");
 	Object sitter = request.getAttribute("sitter");
+	Object sitterStartDate = request.getAttribute("sitterStartDate");
+	Object sitterFinishDate = request.getAttribute("sitterFinishDate");
 %>
 <body>
 	<div class='container'>
@@ -164,18 +165,17 @@ $(() => {
 			</div>
 
 			<div class='form-group row sitterOption mt-2'>
-				<label for='sitterLocation' class='col-2 font mt-1 mr-0 pr-0'>위치 입력</label>
-				<input type='text' class='form-control col-2 font color' name='sitterLocSi'
-						id='sitterLocation' value='${sitter.sitterLocSi }' maxlength='10' required /><label class='font mt-1'>시</label>
-				<input type='text' class='form-control col-2 ml-3 font color' name='sitterLocGu'
-						id='sitterLocation' value='${sitter.sitterLocGu }' maxlength='10' required /><label class='font mt-1'>구</label>
-				<input type='text' class='form-control col-2 ml-3 font color' name='sitterLocDong'
-						id='sitterLocation' value='${sitter.sitterLocDong }' maxlength='10' required /><label class='font mt-1'>동</label>
-			</div>	
+               <label for='sitterLocation' class='col-2 font mt-3 mr-0 pr-0'>위치 입력</label>
+               <div class='form-group row mt-3'>
+            		<input type="text" class='col-3' value='${sitter.sitterPostNum }' name='sitterPostNum' id="sample4_postcode" placeholder="우편번호"> 
+            		<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> 
+            		<input type="text" value='${sitter.sitterLocOrg }' name='sitterLocOrg' id="sample4_jibunAddress" placeholder="지번주소"> 
+            	</div>
+            </div>	
 				
 			<div class='row sitterOption mt-2'>
 					<label for='sitterDate' class='col-2 font mt-1 mr-0 pr-0'>기간 선택</label>
-					<input id='sitterDate' type="text" name="daterange" placeholder='기간을 입력하세요.' class='form-contrl col-5  font color' id='sitterDate' required />
+					<input id='sitterDate' type="text" name="daterange" value='${sitterStartDate } - ${sitterFinishDate }' class='form-contrl col-5  font color' id='sitterDate' required />
 			</div>
 			<hr class='color'>
 
@@ -189,7 +189,7 @@ $(() => {
 				<a href='../common/mypage.html'
 					class='btn btn-outline-secondary font'>취소</a>
 			</div>
-
+ 
 			<div class='modal fade' id='sitterFixMod' tabindex='-1'>
 				<div class='modal-dialog'>
 					<div class='modal-content'>
@@ -208,7 +208,7 @@ $(() => {
 		<form action='upDelSitter/del' method='post'>
 			<div class='form-group row' hidden>
 				<input name='userId' type='text' class='form-control' id='userId'
-					value='<%=userId%>' />
+					value='<%=userId%>'/>
 			</div>
 			<div class='modal fade' id='sitterDelMod' tabindex='-1'>
 				<div class='modal-dialog'>
@@ -223,20 +223,6 @@ $(() => {
 					</div>
 				</div>
 			</div>
-			<!-- <div class='modal fade' id='sitterDelMod' tabindex='-1'>
-				<div class='modal-dialog'>
-					<div class='modal-content'>
-						<div class='modal-body '>
-							<p class='text-center'>게시물을 삭제하겠습니까?</p>
-							<div class='row justify-content-center'>
-								<button type='submit' class='btn btn-primary submitBtn mr-2'>확인</button>
-								<button type='button' class='btn btn-secondary'
-									data-dismiss='modal'>취소</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 		</form>
 		<%@ include file='../include/footer.jsp'%>
 	</div>
